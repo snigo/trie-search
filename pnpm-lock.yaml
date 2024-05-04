@@ -7,10 +7,17 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@gigwork/trie-search':
+        specifier: 'link:'
+        version: 'link:'
     devDependencies:
       '@types/node':
         specifier: ^20.12.8
         version: 20.12.8
+      prettier:
+        specifier: ^3.2.5
+        version: 3.2.5
       rimraf:
         specifier: ^5.0.5
         version: 5.0.5
@@ -563,6 +570,11 @@ packages:
         optional: true
       ts-node:
         optional: true
+
+  prettier@3.2.5:
+    resolution: {integrity: sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==}
+    engines: {node: '>=14'}
+    hasBin: true
 
   punycode@2.3.1:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
@@ -1142,6 +1154,8 @@ snapshots:
     dependencies:
       lilconfig: 3.1.1
       yaml: 2.4.2
+
+  prettier@3.2.5: {}
 
   punycode@2.3.1: {}
 
