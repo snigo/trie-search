@@ -1,0 +1,16 @@
+.changeset
+.github
+.husky
+docs
+node_modules
+src
+.editorconfig
+eslint.config.js
+.gitignore
+.lintstagedrc
+.npmignore
+.prettierignore
+.prettierrc
+renovate.json
+tsconfig.json
+tsup.config.ts

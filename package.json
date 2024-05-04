@@ -18,7 +18,9 @@
   "author": "Igor Snitkin <sudo@snigo.dev>",
   "license": "MIT",
   "devDependencies": {
+    "@gigwork/eslint-config-service": "^1.0.3",
     "@types/node": "^20.12.8",
+    "eslint": "^9.2.0",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
     "tslib": "^2.6.2",
