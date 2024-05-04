@@ -1,1 +1,3 @@
-export class TrieSearch {}
+export class TrieSearch {
+  a = 42;
+}

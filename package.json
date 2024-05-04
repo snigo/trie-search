@@ -9,7 +9,11 @@
   "scripts": {
     "build": "rimraf dist && tsup",
     "format": "prettier --write src",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "tsc --noEmit && eslint src",
+    "lint:fix": "tsc --noEmit && eslint src --fix",
+    "lint:staged": "lint-staged",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky"
   },
   "publishConfig": {
     "access": "public"
@@ -21,6 +25,8 @@
     "@gigwork/eslint-config-service": "^1.0.3",
     "@types/node": "^20.12.8",
     "eslint": "^9.2.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
     "tslib": "^2.6.2",
