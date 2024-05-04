@@ -7,6 +7,7 @@
   "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
+    "build": "rimraf dist && tsup",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "publishConfig": {
@@ -14,5 +15,12 @@
   },
   "keywords": [],
   "author": "Igor Snitkin <sudo@snigo.dev>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.12.8",
+    "rimraf": "^5.0.5",
+    "tslib": "^2.6.2",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5"
+  }
 }
