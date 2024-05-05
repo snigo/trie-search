@@ -16,39 +16,26 @@ import {
 export class TrieSearch<V extends JSONValue> {
   private trie = new Trie<V>();
 
-  private caseSensitive: boolean = false;
+  private caseSensitive: boolean;
 
-  private excludePartial: boolean = false;
+  private excludePartial: boolean;
 
-  private stringify: (input: V) => string = JSON.stringify;
+  private stringify: (input: V) => string;
 
-  private replacePatterns: TrieSearchReplaceRegex[] = DEFAULT_REPLACE_PATTERNS;
+  private replacePatterns: TrieSearchReplaceRegex[];
 
-  private matchWords: (input: string) => string[] = defaultMatchWords;
+  private matchWords: (input: string) => string[];
 
   constructor(options: TrieSearchOptions<V>) {
-    if (options.caseSensitive !== undefined) {
-      this.caseSensitive = options.caseSensitive;
-    }
-
-    if (options.excludePartial !== undefined) {
-      this.excludePartial = options.excludePartial;
-    }
-
-    if (options.stringify) {
-      this.stringify = options.stringify;
-    }
-
-    if (options.replacePatterns) {
-      this.replacePatterns = options.replacePatterns.map(rp => ({
+    this.caseSensitive = options.caseSensitive ?? false;
+    this.excludePartial = options.excludePartial ?? false;
+    this.stringify = options.stringify ?? JSON.stringify;
+    this.replacePatterns =
+      options.replacePatterns?.map(rp => ({
         regex: new RegExp(rp.pattern, 'gi'),
         alternate: rp.alternate,
-      }));
-    }
-
-    if (options.matchWords) {
-      this.matchWords = options.matchWords;
-    }
+      })) ?? DEFAULT_REPLACE_PATTERNS;
+    this.matchWords = options.matchWords ?? defaultMatchWords;
   }
 
   add(value: V) {
