@@ -63,7 +63,7 @@ export class TrieSearch<V extends JSONValue> {
       this.caseSensitive,
     );
     const sets: Set<V>[] = [];
-    this.matchWords(index).forEach(word => {
+    for (const word of this.matchWords(index)) {
       const trieNodeValues = this.trie.getValues(word);
       if (trieNodeValues) {
         const set = new Set<V>();
@@ -75,9 +75,10 @@ export class TrieSearch<V extends JSONValue> {
             set.add(partialValue);
           });
         }
+        if (!set.size) return [];
         sets.push(set);
       }
-    });
+    }
     return intersect(sets);
   }
 }
