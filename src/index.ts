@@ -1,3 +1,96 @@
-export class TrieSearch {
-  a = 42;
+import { Trie } from '@gigwork/ds';
+
+import type {
+  JSONValue,
+  TrieSearchOptions,
+  TrieSearchReplaceRegex,
+} from './types.js';
+import {
+  applyCaseSensitivity,
+  applyReplacePatterns,
+  DEFAULT_REPLACE_PATTERNS,
+  defaultMatchWords,
+  intersect,
+} from './utils.js';
+
+export class TrieSearch<V extends JSONValue> {
+  private trie = new Trie<V>();
+
+  private caseSensitive: boolean = false;
+
+  private excludePartial: boolean = false;
+
+  private stringify: (input: V) => string = JSON.stringify;
+
+  private replacePatterns: TrieSearchReplaceRegex[] = DEFAULT_REPLACE_PATTERNS;
+
+  private matchWords: (input: string) => string[] = defaultMatchWords;
+
+  constructor(options: TrieSearchOptions<V>) {
+    if (options.caseSensitive !== undefined) {
+      this.caseSensitive = options.caseSensitive;
+    }
+
+    if (options.excludePartial !== undefined) {
+      this.excludePartial = options.excludePartial;
+    }
+
+    if (options.stringify) {
+      this.stringify = options.stringify;
+    }
+
+    if (options.replacePatterns) {
+      this.replacePatterns = options.replacePatterns.map(rp => ({
+        regex: new RegExp(rp.pattern, 'gi'),
+        alternate: rp.alternate,
+      }));
+    }
+
+    if (options.matchWords) {
+      this.matchWords = options.matchWords;
+    }
+  }
+
+  add(value: V) {
+    const index = applyCaseSensitivity(
+      applyReplacePatterns(this.stringify(value), this.replacePatterns),
+      this.caseSensitive,
+    );
+    this.trie.addMany(this.matchWords(index), value);
+    return this;
+  }
+
+  addMany(values: V[]) {
+    values.forEach(value => {
+      this.add(value);
+    });
+  }
+
+  clear() {
+    this.trie.clear();
+  }
+
+  search(input: string) {
+    const index = applyCaseSensitivity(
+      applyReplacePatterns(input, this.replacePatterns),
+      this.caseSensitive,
+    );
+    const sets: Set<V>[] = [];
+    this.matchWords(index).forEach(word => {
+      const trieNodeValues = this.trie.getValues(word);
+      if (trieNodeValues) {
+        const set = new Set<V>();
+        if (trieNodeValues.complete !== undefined) {
+          set.add(trieNodeValues.complete);
+        }
+        if (!this.excludePartial && trieNodeValues.partial.length) {
+          trieNodeValues.partial.forEach(partialValue => {
+            set.add(partialValue);
+          });
+        }
+        sets.push(set);
+      }
+    });
+    return intersect(sets);
+  }
 }

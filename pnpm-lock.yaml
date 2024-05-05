@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@gigwork/ds':
+        specifier: ^0.3.2
+        version: 0.3.2(eslint@9.2.0)(typescript@5.4.5)
     devDependencies:
       '@gigwork/eslint-config-service':
         specifier: ^1.0.3
@@ -196,6 +200,9 @@ packages:
   '@eslint/js@9.2.0':
     resolution: {integrity: sha512-ESiIudvhoYni+MdsI8oD7skpprZ89qKocwRM2KEvhhBJ9nl5MRh7BXU5GTod7Mdygq+AUl+QzId6iWJKR/wABA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@gigwork/ds@0.3.2':
+    resolution: {integrity: sha512-rjCp6vNyTLST7sfn+g8VdVzOYgy317jaL6dfY8U4M8CFuUW8Tgx0dnv7K3CpIVR6vV1mEWP7bTmmLF/gQZAx3w==}
 
   '@gigwork/eslint-config-service@1.0.3':
     resolution: {integrity: sha512-xLlZ5Ds1xO5BGaBgwx8e98ceTiqqm3IFdLzQSrhy5n/QsExFwItjtiAYHGTCvTJD4BzCKxQYVPR8cU/IIXWTdw==}
@@ -674,6 +681,9 @@ packages:
 
   flatted@3.3.1:
     resolution: {integrity: sha512-X8cqMLLie7KsNUDSdzeN8FYK9rEt4Dt67OsG/DNGnYTSDBG4uFAJFBnUeiV+zCVAvwFy56IjM9sH51jVaEhNxw==}
+
+  fnv-plus@1.3.1:
+    resolution: {integrity: sha512-Gz1EvfOneuFfk4yG458dJ3TLJ7gV19q3OM/vVvvHf7eT02Hm1DleB4edsia6ahbKgAYxO9gvyQ1ioWZR+a00Yw==}
 
   foreground-child@3.1.1:
     resolution: {integrity: sha512-TMKDUnIte6bfb5nWv7V/caI169OHgvwjb7V4WkeUvbQQdjr5rWKqHFiKWb/fcOwB+CzBT+qbWjvj+DVwRskpIg==}
@@ -1344,6 +1354,16 @@ snapshots:
 
   '@eslint/js@9.2.0': {}
 
+  '@gigwork/ds@0.3.2(eslint@9.2.0)(typescript@5.4.5)':
+    dependencies:
+      '@gigwork/eslint-config-service': 1.0.3(eslint@9.2.0)(typescript@5.4.5)
+      fnv-plus: 1.3.1
+      imurmurhash: 0.1.4
+    transitivePeerDependencies:
+      - eslint
+      - supports-color
+      - typescript
+
   '@gigwork/eslint-config-service@1.0.3(eslint@9.2.0)(typescript@5.4.5)':
     dependencies:
       '@gigwork/eslint-config-service': 'link:'
@@ -1873,6 +1893,8 @@ snapshots:
       keyv: 4.5.4
 
   flatted@3.3.1: {}
+
+  fnv-plus@1.3.1: {}
 
   foreground-child@3.1.1:
     dependencies:
