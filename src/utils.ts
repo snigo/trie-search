@@ -43,7 +43,7 @@ export function applyReplacePatterns(
 }
 
 export function applyCaseSensitivity(input: string, caseSensitive: boolean) {
-  return caseSensitive ? input.toLocaleLowerCase() : input;
+  return !caseSensitive ? input.toLocaleLowerCase() : input;
 }
 
 export function intersect<V>(sets: Set<V>[]): V[] {

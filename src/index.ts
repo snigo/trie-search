@@ -26,16 +26,16 @@ export class TrieSearch<V extends JSONValue> {
 
   private matchWords: (input: string) => string[];
 
-  constructor(options: TrieSearchOptions<V>) {
-    this.caseSensitive = options.caseSensitive ?? false;
-    this.excludePartial = options.excludePartial ?? false;
-    this.stringify = options.stringify ?? JSON.stringify;
+  constructor(options?: TrieSearchOptions<V>) {
+    this.caseSensitive = options?.caseSensitive ?? false;
+    this.excludePartial = options?.excludePartial ?? false;
+    this.stringify = options?.stringify ?? JSON.stringify;
     this.replacePatterns =
-      options.replacePatterns?.map(rp => ({
+      options?.replacePatterns?.map(rp => ({
         regex: new RegExp(rp.pattern, 'gi'),
         alternate: rp.alternate,
       })) ?? DEFAULT_REPLACE_PATTERNS;
-    this.matchWords = options.matchWords ?? defaultMatchWords;
+    this.matchWords = options?.matchWords ?? defaultMatchWords;
   }
 
   add(value: V) {
