@@ -67,10 +67,10 @@ export class TrieSearch<V extends JSONValue> {
       const trieNodeValues = this.trie.getValues(word);
       if (trieNodeValues) {
         const set = new Set<V>();
-        if (trieNodeValues.complete !== undefined) {
-          set.add(trieNodeValues.complete);
-        }
-        if (!this.excludePartial && trieNodeValues.partial.length) {
+        trieNodeValues.complete.forEach(completeValue => {
+          set.add(completeValue);
+        });
+        if (!this.excludePartial) {
           trieNodeValues.partial.forEach(partialValue => {
             set.add(partialValue);
           });
