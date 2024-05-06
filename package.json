@@ -12,7 +12,7 @@
     "lint": "tsc --noEmit && eslint src",
     "lint:fix": "tsc --noEmit && eslint src --fix",
     "lint:staged": "lint-staged",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "glob -c \"node --import tsx --test\" \"src/**/*.test.ts\"",
     "prepare": "husky"
   },
   "publishConfig": {
@@ -25,12 +25,14 @@
     "@gigwork/eslint-config-service": "^1.0.3",
     "@types/node": "^20.12.8",
     "eslint": "^9.2.0",
+    "glob": "^10.3.12",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
     "tslib": "^2.6.2",
     "tsup": "^8.0.2",
+    "tsx": "^4.9.3",
     "typescript": "^5.4.5"
   },
   "dependencies": {

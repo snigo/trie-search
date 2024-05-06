@@ -1,24 +1,23 @@
 import { Trie } from '@gigwork/ds';
 
-import type {
-  JSONValue,
-  TrieSearchOptions,
-  TrieSearchReplaceRegex,
-} from './types.js';
+import type { TrieSearchOptions, TrieSearchReplaceRegex } from './types.js';
 import {
   applyCaseSensitivity,
   applyReplacePatterns,
   DEFAULT_REPLACE_PATTERNS,
   defaultMatchWords,
+  ignoreObjectKeysStringify,
   intersect,
 } from './utils.js';
 
-export class TrieSearch<V extends JSONValue> {
+export class TrieSearch<V> {
   private trie = new Trie<V>();
 
   private caseSensitive: boolean;
 
   private excludePartial: boolean;
+
+  private ignoreObjectKeys: boolean;
 
   private stringify: (input: V) => string;
 
@@ -29,7 +28,10 @@ export class TrieSearch<V extends JSONValue> {
   constructor(options?: TrieSearchOptions<V>) {
     this.caseSensitive = options?.caseSensitive ?? false;
     this.excludePartial = options?.excludePartial ?? false;
-    this.stringify = options?.stringify ?? JSON.stringify;
+    this.ignoreObjectKeys = options?.ignoreObjectKeys ?? false;
+    this.stringify =
+      options?.stringify ??
+      (this.ignoreObjectKeys ? ignoreObjectKeysStringify : JSON.stringify);
     this.replacePatterns =
       options?.replacePatterns?.map(rp => ({
         regex: new RegExp(rp.pattern, 'gi'),

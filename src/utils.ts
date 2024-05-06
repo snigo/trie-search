@@ -27,6 +27,18 @@ export const DEFAULT_REPLACE_PATTERNS: TrieSearchReplaceRegex[] = [
   },
 ];
 
+export function ignoreObjectKeysStringify<V>(input: V): string {
+  if (input === undefined) return '';
+  if (input === null) return 'null';
+  if (Array.isArray(input)) {
+    return input.map(ignoreObjectKeysStringify).join(' ');
+  }
+  if (typeof input === 'object') {
+    return ignoreObjectKeysStringify(Object.values(input));
+  }
+  return JSON.stringify(input);
+}
+
 export function defaultMatchWords(input: string) {
   return input.match(/[\p{L}\p{M}\p{N}]+/gu) ?? [];
 }
