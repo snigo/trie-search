@@ -38,7 +38,7 @@ importers:
         version: 6.0.1
       tslib:
         specifier: ^2.6.2
-        version: 2.6.3
+        version: 2.7.0
       tsup:
         specifier: ^8.0.2
         version: 8.2.3(tsx@4.9.5)(typescript@5.5.4)(yaml@2.4.5)
@@ -1356,8 +1356,8 @@ packages:
   ts-interface-checker@0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
 
-  tslib@2.6.3:
-    resolution: {integrity: sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==}
+  tslib@2.7.0:
+    resolution: {integrity: sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==}
 
   tsup@8.2.3:
     resolution: {integrity: sha512-6YNT44oUfXRbZuSMNmN36GzwPPIlD2wBccY7looM2fkTcxkf2NEmwr3OZuDZoySklnrIG4hoEtzy8yUXYOqNcg==}
@@ -2626,7 +2626,7 @@ snapshots:
 
   ts-interface-checker@0.1.13: {}
 
-  tslib@2.6.3: {}
+  tslib@2.7.0: {}
 
   tsup@8.2.3(tsx@4.9.5)(typescript@5.5.4)(yaml@2.4.5):
     dependencies:
